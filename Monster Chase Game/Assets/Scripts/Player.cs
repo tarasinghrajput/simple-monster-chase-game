@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
     private string WALK_ANIMATION = "Walk";
+    private string GROUND_TAG = "Ground";
+
+    private bool isGrounded;
 
     private void Awake() 
     {
@@ -37,6 +40,11 @@ public class Player : MonoBehaviour
         AnimatePlayer();
     }
 
+    void FixedUpdate() 
+    {
+        PlayerJump();
+    }
+
     void PlayerMoveKeyboard()
     {
         movementX = Input.GetAxisRaw("Horizontal");
@@ -46,7 +54,6 @@ public class Player : MonoBehaviour
 
     void AnimatePlayer()
     {
-        
         // we are going to the right side
         if(movementX > 0)
         {
@@ -59,6 +66,23 @@ public class Player : MonoBehaviour
         } else
         {
             anim.SetBool(WALK_ANIMATION, false);
+        }
+    }
+
+    void PlayerJump()
+    {
+        if(Input.GetButtonDown("Jump") && isGrounded)
+        {
+            isGrounded = false;
+            myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.CompareTag(GROUND_TAG))    
+        {
+            isGrounded = true;
         }
     }
 }
