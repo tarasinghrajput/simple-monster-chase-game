@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5420211663068948632}
   - component: {fileID: 3684833242048044387}
   - component: {fileID: 7418703887992721073}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
