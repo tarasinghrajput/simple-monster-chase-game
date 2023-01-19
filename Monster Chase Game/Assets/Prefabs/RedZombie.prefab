@@ -13,13 +13,14 @@ GameObject:
   - component: {fileID: 8367648994618271360}
   - component: {fileID: 8367648994618271367}
   - component: {fileID: 8367648994618271366}
+  - component: {fileID: 9003131473226747584}
   m_Layer: 0
   m_Name: RedZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8367648994618271362
 Transform:
   m_ObjectHideFlags: 0
@@ -154,3 +155,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &9003131473226747584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367648994618271365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b435c8930c52aa542bd2de6b79b3ca4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
