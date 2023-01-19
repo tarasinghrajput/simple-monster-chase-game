@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5420211663068948636}
   - component: {fileID: 5420211663068948637}
   - component: {fileID: 5420211663068948638}
-  - component: {fileID: 5420211663068948639}
   - component: {fileID: 5420211663068948632}
+  - component: {fileID: 3684833242048044387}
   - component: {fileID: 7418703887992721073}
   m_Layer: 0
   m_Name: GreenZombie
@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5420211663068948636
 Transform:
   m_ObjectHideFlags: 0
@@ -108,33 +108,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &5420211663068948639
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5420211663068948633}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.2, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.29, y: 2.11}
-    newSize: {x: 1.29, y: 2.11}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.69, y: 1.93}
-  m_EdgeRadius: 0
+  m_Constraints: 4
 --- !u!95 &5420211663068948632
 Animator:
   serializedVersion: 5
@@ -155,6 +129,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!70 &3684833242048044387
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420211663068948633}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.18133324, y: -0.008845329}
+  m_Size: {x: 0.7504231, y: 2.0657725}
+  m_Direction: 0
 --- !u!114 &7418703887992721073
 MonoBehaviour:
   m_ObjectHideFlags: 0
