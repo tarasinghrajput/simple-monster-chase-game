@@ -11,5 +11,6 @@ public class mainMenu : MonoBehaviour
         int selectedChar = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
 
         GameManagerScript.instance.CharIndex = selectedChar;
+        SceneManager.LoadScene("Gameplay");
     }
 }
