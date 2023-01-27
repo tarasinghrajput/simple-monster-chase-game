@@ -11,14 +11,17 @@ public class PlayerController : MonoBehaviour
     public float force;
 
     private float holdDownStartTime;
+    private float movementX;
 
 
     void Awake()
     {
         Player = GameObject.FindWithTag("Player");
+        Debug.Log(Input.GetAxis("Vertical"));
     }
     void Update()
     {
+        MoveLeft();
         /*
         if(Input.GetMouseButton(0))
         {
@@ -33,7 +36,10 @@ public class PlayerController : MonoBehaviour
 
     public void MoveLeft()
     {
-        Player.transform.Translate(-(force * Time.deltaTime), 0, 0);
+        // Player.transform.Translate(-(force * Time.deltaTime), 0, 0);
+        movementX = Input.GetAxis("Horizontal");
+
+        transform.position += new Vector3(-(movementX), 0f, 0f) * Time.deltaTime * force;
     }
     public void MoveRight()
     {
