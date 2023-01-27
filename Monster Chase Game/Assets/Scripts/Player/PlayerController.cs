@@ -4,49 +4,58 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // bool leftPressed = false;
-    // bool rightPressed = false;
-    // bool upPressed = false;
-    [SerializeField] private GameObject Player;
-    public float force;
+    // [SerializeField] private GameObject Player;
 
-    private float holdDownStartTime;
-    private float movementX;
+    private Rigidbody2D rb;
+    private float moveSpeed, jumpForce;
+    private bool moveLeft, moveRight;
 
 
     void Awake()
     {
-        Player = GameObject.FindWithTag("Player");
-        Debug.Log(Input.GetAxis("Vertical"));
+        // Player = GameObject.FindWithTag("Player");
+        rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+        moveSpeed = 5f;
+        jumpForce = 500f;
+        moveLeft = false;
+        moveRight = false;
     }
     void Update()
     {
-        MoveLeft();
-        /*
-        if(Input.GetMouseButton(0))
+        if(moveLeft)
         {
-            // Mouse still down, show force
-            // float holdDownTime = Time.time - holdDownStartTime;
-            MoveLeft();
-            MoveRight();
-            Jump();
+            rb.velocity = new Vector2(-moveSpeed, 0f);
         }
-        */
+
+        if(moveRight)
+        {
+            rb.velocity = new Vector2(moveSpeed, 0f);
+        }
     }
 
     public void MoveLeft()
     {
         // Player.transform.Translate(-(force * Time.deltaTime), 0, 0);
-        movementX = Input.GetAxis("Horizontal");
-
-        transform.position += new Vector3(-(movementX), 0f, 0f) * Time.deltaTime * force;
+        moveLeft = true;
     }
     public void MoveRight()
     {
-        Player.transform.Translate(force * Time.deltaTime, 0, 0);
+        // Player.transform.Translate(force * Time.deltaTime, 0, 0);
+        moveRight = true;
     }
     public void Jump()
     {
-        Player.transform.Translate(0, force * Time.deltaTime, 0);
+        // Player.transform.Translate(0, force * Time.deltaTime, 0);
+        if(rb.velocity.y == 0)
+        {
+            rb.AddForce(Vector2.up * jumpForce);
+        }
+    }
+
+    public void StopMoving()
+    {
+        moveLeft = false;
+        moveRight = false;
+        rb.velocity = Vector2.zero;
     }
 }
