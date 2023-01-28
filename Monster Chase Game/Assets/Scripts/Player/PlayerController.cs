@@ -4,32 +4,43 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // [SerializeField] private GameObject Player;
+    private Player player;
+    private SpriteRenderer sr;
+    private Animator animator;
+    private string WALK_ANIMATION = "Walk";
 
     private Rigidbody2D rb;
     private float moveSpeed, jumpForce;
     private bool moveLeft, moveRight;
 
 
+
+
     void Awake()
     {
-        // Player = GameObject.FindWithTag("Player");
+        player = gameObject.GetComponent<Player>();
         rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
         moveSpeed = 5f;
-        jumpForce = 500f;
+        jumpForce = 600f;
         moveLeft = false;
         moveRight = false;
+        sr = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
+        animator = GameObject.FindWithTag("Player").GetComponent<Animator>();
     }
     void Update()
     {
         if(moveLeft)
         {
             rb.velocity = new Vector2(-moveSpeed, 0f);
+            animator.SetBool(WALK_ANIMATION, true);
+            sr.flipX = true;
         }
 
         if(moveRight)
         {
             rb.velocity = new Vector2(moveSpeed, 0f);
+            animator.SetBool(WALK_ANIMATION, true);
+            sr.flipX = false;
         }
     }
 
