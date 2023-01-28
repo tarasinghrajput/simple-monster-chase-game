@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     private Player player;
     private SpriteRenderer sr;
     private Animator animator;
@@ -20,39 +22,49 @@ public class PlayerController : MonoBehaviour
     {
         player = gameObject.GetComponent<Player>();
         rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
-        moveSpeed = 5f;
+        
         jumpForce = 600f;
         moveLeft = false;
         moveRight = false;
         sr = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
         animator = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
     }
     void Update()
     {
         if(moveLeft)
         {
-            rb.velocity = new Vector2(-moveSpeed, 0f);
-            animator.SetBool(WALK_ANIMATION, true);
-            sr.flipX = true;
-        }
-
-        if(moveRight)
+            MoveLeft();
+        } else if(moveRight)
         {
-            rb.velocity = new Vector2(moveSpeed, 0f);
-            animator.SetBool(WALK_ANIMATION, true);
-            sr.flipX = false;
+            MoveRight();
+        } else {
+            animator.SetBool(WALK_ANIMATION, false);
         }
     }
 
     public void MoveLeft()
     {
-        // Player.transform.Translate(-(force * Time.deltaTime), 0, 0);
         moveLeft = true;
+        moveSpeed = -10f;
+        rb.velocity = new Vector2(moveSpeed, 0f);
+        animator.SetBool(WALK_ANIMATION, true);
+        sr.flipX = true;
     }
     public void MoveRight()
     {
-        // Player.transform.Translate(force * Time.deltaTime, 0, 0);
         moveRight = true;
+        moveSpeed = 10f;
+        rb.velocity = new Vector2(moveSpeed, 0f);
+        animator.SetBool(WALK_ANIMATION, true);
+        sr.flipX = false;
     }
     public void Jump()
     {
@@ -68,5 +80,6 @@ public class PlayerController : MonoBehaviour
         moveLeft = false;
         moveRight = false;
         rb.velocity = Vector2.zero;
+        animator.SetBool(WALK_ANIMATION, false);
     }
 }

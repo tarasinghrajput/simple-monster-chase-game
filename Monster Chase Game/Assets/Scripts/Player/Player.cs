@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] //it make the private variable to acces from unity editor
-    private float moveForce = 10f;
+    /*
+    //it make the private variable to acces from unity editor
+    // private float moveForce = 10f;
 
-    [SerializeField] //it make the private variable to acces from unity editor
+    //it make the private variable to acces from unity editor
     private float jumpForce = 11f;
 
     private float movementX;
@@ -46,13 +47,13 @@ public class Player : MonoBehaviour
         PlayerJump();
     }
 
+ /*
     void PlayerMoveKeyboard()
     {
         movementX = Input.GetAxisRaw("Horizontal");
 
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
     }
-
     public void AnimatePlayer()
     {
         // we are going to the right side
@@ -93,5 +94,5 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag(ENEMY_TAG))
             Destroy(gameObject);
-    }
+    } */
 }
