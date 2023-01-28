@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
     }
 
-    void AnimatePlayer()
+    public void AnimatePlayer()
     {
         // we are going to the right side
         if(movementX > 0)
