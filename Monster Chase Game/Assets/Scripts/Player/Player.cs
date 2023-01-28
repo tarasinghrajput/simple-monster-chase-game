@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // private string GROUND_TAG = "Ground";
+    private string ENEMY_TAG = "Enemy";
+    // private bool isGrounded;
     /*
     //it make the private variable to acces from unity editor
     // private float moveForce = 10f;
@@ -17,10 +20,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
     private string WALK_ANIMATION = "Walk";
-    private string GROUND_TAG = "Ground";
-    private string ENEMY_TAG = "Enemy";
 
-    private bool isGrounded;
 
     private void Awake() 
     {
@@ -79,11 +79,12 @@ public class Player : MonoBehaviour
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
+    */
 
     private void OnCollisionEnter2D(Collision2D collision) 
     {
-        if(collision.gameObject.CompareTag(GROUND_TAG))    
-            isGrounded = true;
+        // if(collision.gameObject.CompareTag(GROUND_TAG))    
+        //     isGrounded = true;
 
         if(collision.gameObject.CompareTag(ENEMY_TAG))    
             Destroy(gameObject);
@@ -94,5 +95,5 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag(ENEMY_TAG))
             Destroy(gameObject);
-    } */
+    } 
 }

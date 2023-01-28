@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance;
 
     private Player player;
     private SpriteRenderer sr;
@@ -14,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveSpeed, jumpForce;
     private bool moveLeft, moveRight;
-
+    private bool isGrounded;
 
 
 
@@ -22,20 +21,11 @@ public class PlayerController : MonoBehaviour
     {
         player = gameObject.GetComponent<Player>();
         rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
-        
         jumpForce = 600f;
         moveLeft = false;
         moveRight = false;
         sr = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
         animator = GameObject.FindWithTag("Player").GetComponent<Animator>();
-
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
     }
     void Update()
     {
@@ -45,9 +35,12 @@ public class PlayerController : MonoBehaviour
         } else if(moveRight)
         {
             MoveRight();
-        } else {
-            animator.SetBool(WALK_ANIMATION, false);
         }
+    }
+
+    void FixedUpdate() 
+    {
+        Jump();
     }
 
     public void MoveLeft()
@@ -68,10 +61,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump()
     {
-        // Player.transform.Translate(0, force * Time.deltaTime, 0);
-        if(rb.velocity.y == 0)
+        if(rb.velocity.y == 0 && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce);
+            isGrounded = false;
+            rb.AddForce(new Vector2(0f, -1f), ForceMode2D.Impulse);
         }
     }
 
@@ -81,5 +75,11 @@ public class PlayerController : MonoBehaviour
         moveRight = false;
         rb.velocity = Vector2.zero;
         animator.SetBool(WALK_ANIMATION, false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.CompareTag("Ground"))    
+            isGrounded = true;
     }
 }
