@@ -8,9 +8,11 @@ public class mainMenu : MonoBehaviour
     
     public void PlayGame()
     {
-        int selectedChar = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
-
-        GameManagerScript.instance.CharIndex = selectedChar;
         SceneManager.LoadScene("Gameplay");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
