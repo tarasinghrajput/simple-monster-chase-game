@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() 
     {
-        Jump();
+        
     }
 
     public void MoveLeft()
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce);
             isGrounded = false;
-            rb.AddForce(new Vector2(0f, -1f), ForceMode2D.Impulse);
+            // rb.AddForce(new Vector2(0f, -1f), ForceMode2D.Impulse);
         }
     }
 
