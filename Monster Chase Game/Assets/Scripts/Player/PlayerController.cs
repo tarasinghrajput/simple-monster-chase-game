@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         moveRight = false;
         sr = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
         animator = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
     }
     void Update()
     {
@@ -36,11 +37,6 @@ public class PlayerController : MonoBehaviour
         {
             MoveRight();
         }
-    }
-
-    void FixedUpdate() 
-    {
-        
     }
 
     public void MoveLeft()
